@@ -1,0 +1,9 @@
+2024-12-11T18:11:13+05:30 [error]: Error while verifying the login message Error: [31mTimed out 15000ms waiting for [39m[2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m
+
+Locator: locator('//*[contains(text(), \'You] logged into a secure area!\')]')
+Expected: visible
+Received: <element(s) not found>
+Call log:
+[2m  - expect.toBeVisible with timeout 15000ms[22m
+[2m  - waiting for locator('//*[contains(text(), \'You] logged into a secure area!\')]')[22m
+

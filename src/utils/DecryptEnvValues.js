@@ -6,25 +6,25 @@ const srcPath = path.resolve(__dirname, "..")
 const originalPath = path.resolve(srcPath, "config")
 const pathVal = originalPath+"/.env"
 
-async function encryptEnvFileValue(keyValue) {
+async function decryptEnvFileValue(keyValue) {
     const fileContent = fs.readFileSync(pathVal)
 
     let values = fileContent.toString().split('\n')
 
-    let encryptedLines = values.map((line)=>{
+    let decryptedLines = values.map((line)=>{
         let [key, value] = line.split("=")
         if(value) {
-            const encryptedValue = encryptdecrypt.AES.encrypt(value, keyValue).toString() 
-            return `${key}=${encryptedValue}`
+            const decryptedValue = encryptdecrypt.AES.decrypt(value, keyValue).toString(encryptdecrypt.enc.Utf8)
+            return `${key}=${decryptedValue}`
         }
         return line
     })    
-    let encryptedData = encryptedLines.join('\n')
-    fs.writeFileSync(pathVal, encryptedData, 'utf-8')
+    let decryptedData = decryptedLines.join('\n')
+    fs.writeFileSync(pathVal, decryptedData, 'utf-8')
 
-    console.log("Encryption completed...")
+    console.log("Decryption completed...")
 }
 
-encryptEnvFileValue("key")
+decryptEnvFileValue("keyy")
 
 

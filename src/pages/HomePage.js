@@ -1,4 +1,5 @@
 const {expect}=require('@playwright/test')
+const {logger} = require('../utils/LoggingUtil')
 
 class HomePage {
     constructor(page) {
@@ -7,7 +8,13 @@ class HomePage {
     }
 
     async verifyLoginMessage() {
-        await expect(await this.page.locator(this.successfullLoginMessage)).toBeVisible()
+        await expect(await this.page.locator(this.successfullLoginMessage)).toBeVisible({timeout: 15000})
+        .catch((e)=>{
+            logger.error(`Error while verifying the login message ${e}`)
+            throw e
+        }).then(()=>{
+            logger.info('verifyed the login successfully...')
+        })
     }
 }
 
