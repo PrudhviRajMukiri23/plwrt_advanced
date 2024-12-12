@@ -28,7 +28,7 @@ const logger = winston.createLogger({
             level: "info",
         }),
         new winston.transports.File({
-            filename: path.join(loggingDir, "test_error.log"),
+            filename: path.join(loggingDir, "test_run.log"),
             maxFiles: 5,
             maxsize: 10*1024,
             level: "error",
